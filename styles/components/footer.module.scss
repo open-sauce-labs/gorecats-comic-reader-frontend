@@ -3,9 +3,10 @@
 @use '../variables/theme.module.scss' as *;
 
 .footer {
-	background-color: $secondary-color;
+	background-color: $primary-color;
+	border-top: 4px solid $primary-color-dark;
 	padding: 3rem 2rem;
-	color: $primary-color-dark;
+	color: $secondary-color;
 	text-align: center;
 
 	.footer-content {
@@ -21,7 +22,7 @@
 	.footer-links {
 		svg,
 		path {
-			fill: $primary-color-dark !important;
+			fill: $secondary-color !important;
 		}
 	}
 
@@ -39,8 +40,8 @@
 	}
 
 	.company-logo {
-		@include unclickable;
-		filter: grayscale(1);
+		// red color
+		filter: brightness(100%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
 	}
 
 	.footer-links-wrapper {
@@ -62,6 +63,5 @@
 		height: auto;
 		max-width: 180px;
 		margin: 0 auto;
-		@include unclickable;
 	}
 }

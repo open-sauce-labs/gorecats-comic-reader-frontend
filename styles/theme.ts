@@ -11,7 +11,11 @@ const getSpacing = (x: number, y?: number, z?: number, q?: number) => {
 
 const defaultTheme = createTheme({
 	spacing,
-	palette: { primary: { main: variables.primaryColor }, secondary: { main: variables.secondaryColor } },
+	palette: {
+		primary: { main: variables.primaryColor },
+		secondary: { main: variables.secondaryColor },
+		text: { primary: variables.textColor },
+	},
 	breakpoints: {
 		values: {
 			xs: pxToInt(variables.xsWidth),
@@ -55,18 +59,27 @@ const defaultTheme = createTheme({
 		},
 		MuiAccordionSummary: { styleOverrides: { root: { padding: getSpacing(0) } } },
 		MuiAccordionDetails: { styleOverrides: { root: { padding: getSpacing(8, 0) } } },
+		MuiToolbar: {
+			styleOverrides: {
+				root: {
+					backgroundColor: variables.primaryColorLight,
+					boxShadow: `0px 6px 4px ${variables.primaryColorDark}`,
+				},
+			},
+		},
 		MuiButton: {
 			styleOverrides: {
 				root: {
 					textTransform: 'none',
 					'&.Mui-disabled': {
-						backgroundColor: variables.primaryColor,
+						backgroundColor: variables.primaryColorDark,
 						boxShadow: '4px 2px rgba(0,0,0,0.9)',
 						color: variables.secondaryColor,
 					},
 				},
 				contained: {
-					borderRadius: '2rem',
+					// borderRadius: '2rem',
+					borderRadius: 0,
 					boxShadow: '4px 2px rgba(0,0,0,0.9)',
 					border: '2px solid black',
 					minWidth: '40px',
@@ -90,6 +103,7 @@ const defaultTheme = createTheme({
 					overflowX: 'visible',
 					boxShadow: '6px 6px rgba(0,0,0,0.9)',
 					'.MuiDialogTitle-root': {
+						textShadow: `2px 2px ${variables.primaryColorDark}`,
 						padding: getSpacing(1, 2),
 						alignItems: 'center',
 						backgroundColor: 'unset',
