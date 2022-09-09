@@ -5,13 +5,13 @@
 .footer {
 	background-color: $primary-color;
 	border-top: 4px solid $primary-color-dark;
-	padding: 3rem 2rem;
+	padding: 2rem;
 	color: $secondary-color;
 	text-align: center;
 
 	.footer-content {
 		> *:not(:last-child) {
-			margin-bottom: 4rem;
+			margin-bottom: 2.5rem;
 
 			@include md {
 				margin-bottom: 0rem;

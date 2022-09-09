@@ -63,7 +63,7 @@ const defaultTheme = createTheme({
 			styleOverrides: {
 				root: {
 					backgroundColor: variables.primaryColorLight,
-					boxShadow: `0px 6px 4px ${variables.primaryColorDark}`,
+					boxShadow: `0px 4px 2px ${variables.primaryColorDark}`,
 					height: '56px',
 				},
 			},

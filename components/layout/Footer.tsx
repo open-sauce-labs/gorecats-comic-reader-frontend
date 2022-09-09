@@ -53,7 +53,7 @@ const Footer: React.FC<BoxProps> = (props) => {
 
 				<Grid item xs={12} md={4}>
 					<a href='https://www.gorecats.io/' rel='noreferrer' target='_blank'>
-						<Image className='footer-image' src={logoImage} alt='Gorecats' width={180} height={64} />{' '}
+						<Image className='footer-image' src={logoImage} alt='Gorecats' width={160} height={64} />{' '}
 					</a>
 				</Grid>
 			</Grid>

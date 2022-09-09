@@ -7,10 +7,10 @@
 	width: 100%;
 
 	.comic-reader-actions {
-		margin: 0.5rem 0.5rem 0.5rem auto;
+		margin: 1rem 1rem 1rem auto;
 
 		@include md {
-			margin: 1rem 1rem 1rem auto;
+			margin: 2rem 2rem 2rem auto;
 		}
 
 		& > *:not(:last-child) {
@@ -33,5 +33,11 @@
 		.flashlight-icon {
 			padding: 1px;
 		}
+	}
+
+	.comic-page {
+		width: 100%;
+		height: 100%;
+		@include unclickable;
 	}
 }
