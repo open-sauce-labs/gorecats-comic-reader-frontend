@@ -1,0 +1,37 @@
+@use '../mixins/common.module.scss' as *;
+@use '../mixins/breakpoints.module.scss' as *;
+
+.comic-reader-wrapper {
+	@include flexColumn;
+	align-items: center;
+	width: 100%;
+
+	.comic-reader-actions {
+		margin: 0.5rem 0.5rem 0.5rem auto;
+
+		@include md {
+			margin: 1rem 1rem 1rem auto;
+		}
+
+		& > *:not(:last-child) {
+			margin-right: 1rem;
+		}
+	}
+
+	.comic-reader-action {
+		@include clickable;
+		position: initial;
+		height: 34px;
+		width: 58px;
+
+		svg {
+			height: 100%;
+			padding: 4px;
+			width: auto;
+		}
+
+		.flashlight-icon {
+			padding: 1px;
+		}
+	}
+}

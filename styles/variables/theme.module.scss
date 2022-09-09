@@ -1,5 +1,5 @@
 // colors
-$primary-color-light: #88182e;
+$primary-color-light: #9b0125;
 $primary-color: #5e1120;
 $primary-color-dark: #550f1c;
 $secondary-color: #fbecc0;
@@ -17,6 +17,7 @@ $xl-width: 1536px;
 $spacing: 8px;
 
 :export {
+	primaryColorLight: $primary-color-light;
 	primaryColor: $primary-color;
 	primaryColorDark: $primary-color-dark;
 	secondaryColor: $secondary-color;
