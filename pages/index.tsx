@@ -10,6 +10,8 @@ import ComicReader from 'components/ComicReader'
 const Home: NextPage = () => {
 	const { data } = useFetchApp()
 
+	console.log('data: ', data)
+
 	return (
 		<>
 			<Navigation />

@@ -4,9 +4,11 @@ import { useQuery } from 'react-query'
 import { dummyComic } from 'constants/dummyComic'
 import { Comic } from 'models/comic'
 
+const { COMIC, GET } = COMIC_QUERY_KEYS
+
 const fetchComic = async (): Promise<Comic> => {
 	try {
-		await http.get<string>(COMIC_QUERY_KEYS.COMIC)
+		await http.get<string>(`${COMIC}/${GET}`)
 	} catch (e) {}
 	// return response.data
 	return dummyComic

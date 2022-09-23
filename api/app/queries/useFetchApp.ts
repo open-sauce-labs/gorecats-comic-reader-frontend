@@ -2,8 +2,10 @@ import http from 'api/http'
 import { appKeys, APP_QUERY_KEYS } from 'api/app'
 import { useQuery } from 'react-query'
 
+const { APP, HELLO } = APP_QUERY_KEYS
+
 const fetchApp = async (): Promise<string> => {
-	const response = await http.get<string>(APP_QUERY_KEYS.APP)
+	const response = await http.get<string>(`${APP}/${HELLO}`)
 	return response.data
 }
 

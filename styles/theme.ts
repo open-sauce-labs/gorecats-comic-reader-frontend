@@ -65,6 +65,7 @@ const defaultTheme = createTheme({
 					backgroundColor: variables.primaryColorLight,
 					boxShadow: `0px 4px 2px ${variables.primaryColorDark}`,
 					height: '56px',
+					minHeight: '56px',
 				},
 			},
 		},
@@ -129,7 +130,7 @@ const defaultTheme = createTheme({
 		MuiPaper: {
 			styleOverrides: {
 				root: {
-					backgroundImage: "url('/assets/ui/theme-texture.jpg')",
+					// backgroundImage: "url('/assets/ui/theme-texture.jpg')",
 					borderRadius: '0',
 					backgroundColor: variables.primaryColor,
 					border: '2px solid black',
