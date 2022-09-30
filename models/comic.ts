@@ -1,15 +1,26 @@
-import { Collection } from './collection'
-import { ComicPage } from './comicPage'
+import { ComicIssue } from './comicIssue'
 
 export interface Comic {
 	id: number
-	title: string
-	flavorText: string
+	name: string
+	slug: string
 	description: string
+	flavorText: string
+	isDeleted: boolean
+	isVerified: boolean
+	isPublished: boolean
 	thumbnail: string
-	issueNumber: number
-	releaseDate: string
-	soundtrack?: string | null
-	collection: Collection
-	pages: ComicPage[]
+	pfp: string
+	logo: string
+	website: string
+	twitter: string
+	discord: string
+	telegram: string
+	instagram: string
+	medium: string
+	tikTok: string
+	youTube: string
+	magicEden: string
+	openSea: string
+	issues: ComicIssue[]
 }

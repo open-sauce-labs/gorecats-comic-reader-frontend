@@ -8,11 +8,6 @@ const withPWA = require('next-pwa')({
 
 module.exports = withPWA({
 	reactStrictMode: true,
-	experimental: {
-		images: {
-			allowFutureImage: true,
-		},
-	},
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
 	},

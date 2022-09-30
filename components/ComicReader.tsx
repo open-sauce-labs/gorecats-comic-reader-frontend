@@ -16,7 +16,7 @@ const initialLight = lsFlashlight === null ? isDaytime() : lsFlashlight === 'tru
 
 const ComicReader: React.FC = () => {
 	const { data: comic, isFetched } = useFetchComic()
-	const [play, { stop }] = useSound(comic?.soundtrack || [], { interrupt: false })
+	const [play, { stop }] = useSound(comic?.issues[0]?.soundtrack || [], { interrupt: false })
 	const [flashlight, toggleFlashlight] = useToggle(initialLight)
 	const [sound, toggleSound] = useToggle()
 
@@ -73,7 +73,7 @@ const ComicReader: React.FC = () => {
 					px={{ xs: 0, sm: 1, md: 2 }}
 				>
 					{/* TODO: next Image */}
-					<img src={comic.pages[0].image} alt={`Page ${0}`} className='comic-page' />
+					<img src={comic.issues[0].pages[0].image} alt={`Page ${0}`} className='comic-page' />
 				</Box>
 			</Box>
 		</ReactFlashlight>
