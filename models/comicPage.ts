@@ -1,6 +1,6 @@
 export interface ComicPage {
 	id: number
-	number: number
+	pageNumber: number
 	isPreviewable: boolean
 	image: string
 	altImage?: string | null

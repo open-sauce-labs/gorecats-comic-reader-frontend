@@ -2,24 +2,27 @@ import type { NextPage } from 'next'
 import Navigation from 'components/layout/Navigation'
 import Footer from 'components/layout/Footer'
 import Main from 'components/layout/Main'
-import hashlist from 'constants/hashlist'
-import { HoldersOnly } from '@open-sauce/solomon'
 import { useFetchApp } from 'api/app'
 import ComicReader from 'components/ComicReader'
+import { useAuth } from '@open-sauce/solomon'
+import { Typography } from '@mui/material'
 
 const Home: NextPage = () => {
-	const { data } = useFetchApp()
-
-	console.log('data: ', data)
+	const auth = useAuth()
+	useFetchApp()
 
 	return (
 		<>
 			<Navigation />
 
 			<Main className='main'>
-				<HoldersOnly altChildren='Connect with your wallet which holds the Gorecat NFT' hashlist={hashlist}>
+				{auth.isAuthenticated ? (
 					<ComicReader />
-				</HoldersOnly>
+				) : (
+					<Typography variant='h5' py={6} width='100%' textAlign='center'>
+						Connect with your wallet which holds the Gorecat NFT
+					</Typography>
+				)}
 			</Main>
 
 			<Footer />

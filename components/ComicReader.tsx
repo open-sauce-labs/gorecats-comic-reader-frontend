@@ -5,6 +5,7 @@ import FlashlightOffIcon from 'public/assets/vector-icons/flashlight-off-icon.sv
 import VolumeOnIcon from 'public/assets/vector-icons/volume-on-icon.svg'
 import VolumeOffIcon from 'public/assets/vector-icons/volume-off-icon.svg'
 import { ReactFlashlight } from 'react-flashlight'
+import { useFetchComicIssue } from 'api/comicIssue'
 import { useFetchComic } from 'api/comic'
 import useToggle from 'hooks/useToggle'
 import useSound from 'use-sound'
@@ -15,8 +16,9 @@ const lsFlashlight = typeof window === 'object' ? localStorage.getItem('flashlig
 const initialLight = lsFlashlight === null ? isDaytime() : lsFlashlight === 'true'
 
 const ComicReader: React.FC = () => {
-	const { data: comic, isFetched } = useFetchComic()
-	const [play, { stop }] = useSound(comic?.issues[0]?.soundtrack || [], { interrupt: false })
+	const { data: comic, isFetched } = useFetchComic('gorecats')
+	const { data: comicIssue } = useFetchComicIssue(comic?.issues[0]?.id)
+	const [play, { stop }] = useSound(comicIssue?.soundtrack || [], { interrupt: false })
 	const [flashlight, toggleFlashlight] = useToggle(initialLight)
 	const [sound, toggleSound] = useToggle()
 
@@ -25,7 +27,7 @@ const ComicReader: React.FC = () => {
 	}, [flashlight])
 
 	// TODO: navigate to 404?
-	if (!comic) return null
+	if (!comic || !comicIssue) return null
 
 	return (
 		<ReactFlashlight enabled={flashlight} showCursor={!flashlight} size={320} darkness={0.9}>
@@ -70,10 +72,12 @@ const ComicReader: React.FC = () => {
 					onContextMenu={(e) => {
 						e.preventDefault()
 					}}
-					px={{ xs: 0, sm: 1, md: 2 }}
+					className='comic-wrapper'
 				>
 					{/* TODO: next Image */}
-					<img src={comic.issues[0].pages[0].image} alt={`Page ${0}`} className='comic-page' />
+					{comicIssue.pages.map((page) => (
+						<img key={page.id} src={page.image} alt={`Page ${page.pageNumber}`} className='comic-page' />
+					))}
 				</Box>
 			</Box>
 		</ReactFlashlight>

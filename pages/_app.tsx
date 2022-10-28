@@ -11,6 +11,7 @@ import theme from 'styles/theme'
 import Head from 'next/head'
 import http from 'api/http'
 import 'styles/app.scss'
+import ToastProvider from 'providers/ToastProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const [queryClient] = useState(() => new QueryClient())
@@ -22,17 +23,19 @@ function MyApp({ Component, pageProps }: AppProps) {
 					<WalletProvider wallets={wallets[network]} autoConnect>
 						<WalletDialogProvider featuredWallets={6}>
 							<AuthProvider http={http}>
-								<CssBaseline />
+								<ToastProvider>
+									<CssBaseline />
 
-								<Head>
-									<meta
-										name='viewport'
-										content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover'
-									/>
-									<title>Gorecats</title>
-								</Head>
+									<Head>
+										<meta
+											name='viewport'
+											content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover'
+										/>
+										<title>Gorecats</title>
+									</Head>
 
-								<Component {...pageProps} />
+									<Component {...pageProps} />
+								</ToastProvider>
 							</AuthProvider>
 						</WalletDialogProvider>
 					</WalletProvider>

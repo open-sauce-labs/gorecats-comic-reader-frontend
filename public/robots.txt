@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://dReader.io
+Host: https://comic.gorecats.io
 
 # Sitemaps
-Sitemap: https://dReader.io/sitemap.xml
+Sitemap: https://comic.gorecats.io/sitemap.xml
