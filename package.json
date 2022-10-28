@@ -19,7 +19,7 @@
 		"@emotion/styled": "^11.10.5",
 		"@mui/icons-material": "^5.10.9",
 		"@mui/material": "^5.10.11",
-		"@open-sauce/solomon": "^0.1.10",
+		"@open-sauce/solomon": "^0.1.11",
 		"@solana-mobile/wallet-adapter-mobile": "^0.9.7",
 		"@solana/spl-token": "^0.3.5",
 		"@solana/wallet-adapter-base": "^0.9.18",
