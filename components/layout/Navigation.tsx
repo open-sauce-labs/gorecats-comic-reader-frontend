@@ -8,8 +8,13 @@ import TelegramIcon from 'public/assets/vector-icons/telegram-icon.svg'
 // import MagicEdenIcon from 'public/assets/vector-icons/magic-eden-icon.svg'
 import SocialIcon from 'public/assets/vector-icons/social-icon.svg'
 // import { attributes as navigation } from 'content/navigation.md'
-import { WalletMultiButton } from '@solana/wallet-adapter-material-ui'
 import useAnchorElement from 'hooks/useAnchorElement'
+import dynamic from 'next/dynamic'
+
+const WalletMultiButtonDynamic = dynamic(
+	async () => (await import('@solana/wallet-adapter-material-ui')).WalletMultiButton,
+	{ ssr: false }
+)
 
 const Navigation: React.FC<ToolbarProps> = (props) => {
 	const [menuAnchorEl, setMenuAnchorEl, resetMenuAnchorEl] = useAnchorElement()
@@ -122,7 +127,7 @@ const Navigation: React.FC<ToolbarProps> = (props) => {
 						<MagicEdenIcon />
 					</Button> */}
 				</Hidden>
-				<WalletMultiButton className='wallet-button' />
+				<WalletMultiButtonDynamic className='wallet-button' />
 			</Box>
 		</Toolbar>
 	)
