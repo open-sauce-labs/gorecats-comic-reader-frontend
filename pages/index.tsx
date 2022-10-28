@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 				{auth.isAuthenticated ? (
 					<ComicReader />
 				) : (
-					<Typography variant='h5' py={6} width='100%' textAlign='center'>
+					<Typography variant='h6' py={6} px={2} width='100%' textAlign='center'>
 						Connect with your wallet which holds the Gorecat NFT
 					</Typography>
 				)}
