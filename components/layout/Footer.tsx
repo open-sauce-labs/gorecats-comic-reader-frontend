@@ -5,7 +5,7 @@ import TwitterIcon from 'public/assets/vector-icons/twitter-icon.svg'
 import TelegramIcon from 'public/assets/vector-icons/telegram-icon.svg'
 import logoImage from 'public/assets/logo.png'
 import companyLogoImage from 'public/assets/nx-logo.png'
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 const Footer: React.FC<BoxProps> = (props) => {
 	return (

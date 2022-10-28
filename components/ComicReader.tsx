@@ -18,13 +18,17 @@ const initialLight = lsFlashlight === null ? isDaytime() : lsFlashlight === 'tru
 const ComicReader: React.FC = () => {
 	const { data: comic, isFetched } = useFetchComic('gorecats')
 	const { data: comicIssue } = useFetchComicIssue(comic?.issues[0]?.id)
-	const [play, { stop }] = useSound(comicIssue?.soundtrack || [], { interrupt: false })
+	const [play, { stop }] = useSound('/assets/sounds/harlem_nocturne.mp3', { interrupt: false })
 	const [flashlight, toggleFlashlight] = useToggle(initialLight)
 	const [sound, toggleSound] = useToggle()
 
 	useEffect(() => {
 		localStorage.setItem('flashlight', flashlight.toString())
 	}, [flashlight])
+
+	useEffect(() => {
+		console.log(comicIssue?.soundtrack)
+	}, [comicIssue])
 
 	// TODO: navigate to 404?
 	if (!comic || !comicIssue) return null
