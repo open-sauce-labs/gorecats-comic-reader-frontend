@@ -16,7 +16,7 @@ class MyDocument extends Document {
 
 					<meta
 						name='description'
-						content='1,111 handcrafted NFTs on Solana from the Emmy award winning duo at StudioNX. Backed by a team of veteran developers, tokenomists, puzzle designers and...'
+						content='A sadistic breed of bloodthirsty critters wreak havoc across the city of catsburg! A washed up detective is the only one standing in the way of a full on invasion and he needs your help! Gain full access to issue 01 by purchasing a limited edition cover on MagicEden...'
 					/>
 					<meta
 						name='keywords'

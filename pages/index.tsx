@@ -5,7 +5,8 @@ import Main from 'components/layout/Main'
 import { useFetchApp } from 'api/app'
 import ComicReader from 'components/ComicReader'
 import { useAuth } from '@open-sauce/solomon'
-import { Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
+import MagicEdenIcon from 'public/assets/vector-icons/magic-eden-icon.svg'
 
 const Home: NextPage = () => {
 	const auth = useAuth()
@@ -19,9 +20,24 @@ const Home: NextPage = () => {
 				{auth.isAuthenticated ? (
 					<ComicReader />
 				) : (
-					<Typography variant='h6' py={6} px={2} width='100%' textAlign='center'>
-						Connect with your wallet which holds the Gorecat NFT
-					</Typography>
+					<Box textAlign='center' py={6} px={2} width='100%'>
+						<Typography variant='h6' pb={2}>
+							Connect with wallet which holds Gorecats
+						</Typography>
+						<Typography variant='body1' pb={1}>
+							Don&apos;t have one?
+						</Typography>
+						<Button
+							href='https://magiceden.io/creators/gorecats_collection'
+							rel='noreferrer'
+							target='_blank'
+							variant='contained'
+							style={{ padding: '0.4rem 1rem' }}
+						>
+							<MagicEdenIcon style={{ margin: '-3px 4px 0' }} />
+							MagicEden
+						</Button>
+					</Box>
 				)}
 			</Main>
 
