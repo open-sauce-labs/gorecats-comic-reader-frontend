@@ -1,5 +1,5 @@
 {
-	"short_name": "Gorecats Comic",
+	"short_name": "Gorecats",
 	"name": "Gorecats Comic Reader",
 	"icons": [
 		{
@@ -21,6 +21,6 @@
 	],
 	"start_url": "/",
 	"display": "standalone",
-	"theme_color": "#000000",
-	"background_color": "#d7ae6e"
+	"theme_color": "#121212",
+	"background_color": "#711527"
 }
