@@ -6,8 +6,9 @@ import TwitterIcon from 'public/assets/vector-icons/twitter-icon.svg'
 import InstagramIcon from 'public/assets/vector-icons/instagram-icon.svg'
 import TelegramIcon from 'public/assets/vector-icons/telegram-icon.svg'
 import SocialIcon from 'public/assets/vector-icons/social-icon.svg'
-import { Account, lsRemoveWalletAuth, removeAuthHeaders, useServerAuthorization } from '@open-sauce/solomon'
+import { Account, lsRemoveWalletAuth, removeAuthHeaders, useAuth, useServerAuthorization } from '@open-sauce/solomon'
 import { SolanaMobileWalletAdapterWalletName } from '@solana-mobile/wallet-adapter-mobile'
+import { Web3MobileWallet } from '@solana-mobile/mobile-wallet-adapter-protocol-web3js'
 import { useWallet } from '@solana/wallet-adapter-react'
 import useAnchorElement from 'hooks/useAnchorElement'
 import dynamic from 'next/dynamic'
@@ -24,16 +25,22 @@ const MobileWalletMultiButtonDynamic = dynamic(
 )
 
 const Navigation: React.FC<ToolbarProps> = (props) => {
+	const { setIsAuthenticated } = useAuth()
 	const [menuAnchorEl, setMenuAnchorEl, resetMenuAnchorEl] = useAnchorElement()
 	const { mobileConnect } = useServerAuthorization(http)
 	const { wallet } = useWallet()
 	const isMobileWallet = wallet?.adapter.name === SolanaMobileWalletAdapterWalletName
 
-	const mobileDeauthorize = (account: Account) => {
+	const onAuthorize = async (mobileWallet: Web3MobileWallet, account: Account) => {
+		// TODO: deprecate setIsAuthenticated(true)
+		setIsAuthenticated(true)
+		return await mobileConnect(mobileWallet, account)
+	}
+
+	const onDeauthorize = (account: Account) => {
 		removeAuthHeaders(http)
 		if (account?.address) lsRemoveWalletAuth(account.address)
-		// TODO:
-		// setIsAuthenticated(false)
+		// TODO: setIsAuthenticated(false)
 	}
 
 	return (
@@ -127,10 +134,9 @@ const Navigation: React.FC<ToolbarProps> = (props) => {
 
 				{isMobileWallet ? (
 					<MobileWalletMultiButtonDynamic
-						variant='contained'
 						className='wallet-button'
-						onAuthorize={mobileConnect}
-						onDeauthorize={mobileDeauthorize}
+						onAuthorize={onAuthorize}
+						onDeauthorize={onDeauthorize}
 					/>
 				) : (
 					<WalletMultiButtonDynamic variant='contained' className='wallet-button' />
