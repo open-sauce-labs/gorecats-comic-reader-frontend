@@ -5,19 +5,36 @@ import DiscordIcon from 'public/assets/vector-icons/discord-icon.svg'
 import TwitterIcon from 'public/assets/vector-icons/twitter-icon.svg'
 import InstagramIcon from 'public/assets/vector-icons/instagram-icon.svg'
 import TelegramIcon from 'public/assets/vector-icons/telegram-icon.svg'
-// import MagicEdenIcon from 'public/assets/vector-icons/magic-eden-icon.svg'
 import SocialIcon from 'public/assets/vector-icons/social-icon.svg'
-// import { attributes as navigation } from 'content/navigation.md'
+import { Account, lsRemoveWalletAuth, removeAuthHeaders, useServerAuthorization } from '@open-sauce/solomon'
+import { SolanaMobileWalletAdapterWalletName } from '@solana-mobile/wallet-adapter-mobile'
+import { useWallet } from '@solana/wallet-adapter-react'
 import useAnchorElement from 'hooks/useAnchorElement'
 import dynamic from 'next/dynamic'
+import http from 'api/http'
 
 const WalletMultiButtonDynamic = dynamic(
 	async () => (await import('@solana/wallet-adapter-material-ui')).WalletMultiButton,
 	{ ssr: false }
 )
 
+const MobileWalletMultiButtonDynamic = dynamic(
+	async () => await (await import('@open-sauce/solomon')).MobileWalletMultiButton,
+	{ ssr: false }
+)
+
 const Navigation: React.FC<ToolbarProps> = (props) => {
 	const [menuAnchorEl, setMenuAnchorEl, resetMenuAnchorEl] = useAnchorElement()
+	const { mobileConnect } = useServerAuthorization(http)
+	const { wallet } = useWallet()
+	const isMobileWallet = wallet?.adapter.name === SolanaMobileWalletAdapterWalletName
+
+	const mobileDeauthorize = (account: Account) => {
+		removeAuthHeaders(http)
+		if (account?.address) lsRemoveWalletAuth(account.address)
+		// TODO:
+		// setIsAuthenticated(false)
+	}
 
 	return (
 		<Toolbar color='primary' component='nav' className='navigation' {...props}>
@@ -65,17 +82,6 @@ const Navigation: React.FC<ToolbarProps> = (props) => {
 								Telegram
 							</Button>
 						</MenuItem>
-						{/* <MenuItem onClick={resetMenuAnchorEl}>
-							<Button
-								color='secondary'
-								href='https://magiceden.io/creators/gorecats_collection'
-								rel='noreferrer'
-								target='_blank'
-							>
-								<MagicEdenIcon />
-								MagicEden
-							</Button>
-						</MenuItem> */}
 					</Menu>
 				</Hidden>
 
@@ -117,17 +123,18 @@ const Navigation: React.FC<ToolbarProps> = (props) => {
 					>
 						<TelegramIcon />
 					</Button>
-					{/* <Button
-						variant='contained'
-						aria-label='magic-eden'
-						href='https://magiceden.io/creators/gorecats_collection'
-						rel='noreferrer'
-						target='_blank'
-					>
-						<MagicEdenIcon />
-					</Button> */}
 				</Hidden>
-				<WalletMultiButtonDynamic className='wallet-button' />
+
+				{isMobileWallet ? (
+					<MobileWalletMultiButtonDynamic
+						variant='contained'
+						className='wallet-button'
+						onAuthorize={mobileConnect}
+						onDeauthorize={mobileDeauthorize}
+					/>
+				) : (
+					<WalletMultiButtonDynamic variant='contained' className='wallet-button' />
+				)}
 			</Box>
 		</Toolbar>
 	)
